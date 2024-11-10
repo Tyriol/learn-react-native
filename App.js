@@ -1,5 +1,13 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Image, TextInput, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  Image,
+  TextInput,
+  Button,
+} from "react-native";
 import { useState } from "react";
 
 export default function App() {
@@ -17,7 +25,10 @@ export default function App() {
       <View style={[styles.header, { backgroundColor: headerColour }]}>
         <Text style={styles.headerTitle}>GONE NATIVE</Text>
       </View>
-      <View style={styles.main}>
+      <ScrollView
+        style={styles.mainContainer}
+        contentContainerStyle={styles.main}
+      >
         <Text style={styles.title}>Hello World</Text>
         <Text>This is my first React Native App</Text>
         <Text>{name ? `Hi ${name}` : "What is your name?"}</Text>
@@ -31,6 +42,10 @@ export default function App() {
           title="Press Me!"
           onPress={changeColour}
         />
+      </ScrollView>
+      <View style={styles.tabs}>
+        <Text>Tab 1</Text>
+        <Text>Tab 2</Text>
       </View>
       <StatusBar style="auto" />
     </View>
@@ -51,14 +66,23 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 50,
   },
+  mainContainer: {
+    flex: 0.2,
+  },
   main: {
-    flex: 0.8,
+    flex: 1,
     paddingTop: 50,
     backgroundColor: "#f5f5f5",
     alignItems: "center",
     justifyContent: "start",
     gap: 10,
     fontSize: 20,
+  },
+  tabs: {
+    flex: 0.1,
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignItems: "center",
   },
   title: {
     fontSize: 30,
